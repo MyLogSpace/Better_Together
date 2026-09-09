@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PLURAL — WORKING WITH US</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   PLURAL — WORKING WITH US (Integrated Editorial Design)
+   ========================================================================== */
+:root {
+  --paper: #F8F6F0;
+  --paper-card: #FFFFFF;
+  --paper-dim: #EFECE1;
+  --ink: #121210;
+  --ink-soft: #5A574E;
+  --ink-muted: #8C877A;
+  --ink-on-dark: #F8F6F0;
+  --ink-on-dark-soft: #A6A092;
+  --accent: #D4881E;
+  --accent-light: #F4E8D3;
+  --accent-glow: rgba(212, 136, 30, 0.15);
+  --line: #E2DDD0;
+  --line-dark: #2B2924;
+
+  --serif: "Fraunces", Georgia, serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+
+  --container: 960px;
+  --gutter: clamp(24px, 5vw, 80px);
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ==========================================================================
+   Header (Sticky Glassmorphic)
+   ========================================================================== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px var(--gutter);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(18, 18, 16, 0.65);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.site-header.is-scrolled {
+  padding: 14px var(--gutter);
+  background: rgba(18, 18, 16, 0.88);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.logo {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.08em;
+  color: var(--paper);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.site-nav a {
+  color: rgba(248, 246, 240, 0.75);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.site-nav a:hover,
+.site-nav a.active {
+  color: var(--paper);
+}
+
+.site-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.25s ease;
+}
+
+.site-nav a:hover::after,
+.site-nav a.active::after {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .site-nav { display: none; }
+}
+
+/* ==========================================================================
+   Layout & Typography Primitives
+   ========================================================================== */
+.section {
+  padding: clamp(80px, 12vw, 140px) var(--gutter);
+  position: relative;
+}
+
+.section-light {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.section-dark {
+  background: var(--ink);
+  color: var(--ink-on-dark);
+}
+
+.section-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.section-dark .section-tag {
+  color: var(--accent);
+}
+
+.section-index {
+  position: absolute;
+  top: clamp(40px, 8vw, 80px);
+  right: var(--gutter);
+  font-family: var(--serif);
+  font-size: clamp(80px, 15vw, 180px);
+  font-weight: 300;
+  line-height: 1;
+  color: var(--line);
+  opacity: 0.4;
+  user-select: none;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.section-dark .section-index {
+  color: var(--line-dark);
+  opacity: 0.6;
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(32px, 4.5vw, 52px);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+
+.section-lead {
+  font-size: 17px;
+  color: var(--ink-muted);
+  max-width: 52ch;
+  margin-bottom: 56px;
+}
+
+.section-dark .section-lead {
+  color: var(--ink-on-dark-soft);
+}
+
+/* Animations on Scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 32px;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  border-radius: 50px;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #FFFFFF;
+  box-shadow: 0 4px 20px rgba(212, 136, 30, 0.3);
+}
+
+.btn-primary:hover {
+  background: #C07918;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 136, 30, 0.4);
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: var(--paper);
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(212, 136, 30, 0.08);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   00 — Hero Section
+   ========================================================================== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 140px var(--gutter) 80px;
+  background: var(--ink);
+  color: var(--ink-on-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-glow {
+  position: absolute;
+  top: 20%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(212, 136, 30, 0.12) 0%, rgba(0,0,0,0) 70%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  max-width: 900px;
+  z-index: 2;
+}
+
+.hero-kicker {
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(212, 136, 30, 0.15);
+  border: 1px solid rgba(212, 136, 30, 0.3);
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-bottom: 28px;
+}
+
+.hero-headline {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(42px, 7vw, 84px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 32px;
+}
+
+.hero-headline-accent {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent-light);
+  background: linear-gradient(120deg, #F4E8D3 0%, #D4881E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-sub {
+  font-size: clamp(17px, 2vw, 21px);
+  color: var(--ink-on-dark-soft);
+  max-width: 44ch;
+  line-height: 1.6;
+  margin-bottom: 48px;
+  font-weight: 300;
+}
+
+.hero-scroll-cue {
+  position: absolute;
+  bottom: 40px;
+  left: var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--ink-on-dark-soft);
+  text-transform: uppercase;
+}
+
+.hero-scroll-line {
+  width: 40px;
+  height: 1px;
+  background: var(--accent);
+  animation: pulse-line 2s infinite ease-in-out;
+}
+
+@keyframes pulse-line {
+  0%, 100% { opacity: 0.3; transform: scaleX(0.7); }
+  50% { opacity: 1; transform: scaleX(1); }
+}
+
+/* ==========================================================================
+   01 — Culture
+   ========================================================================== */
+.value-statement {
+  background: var(--paper-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: clamp(32px, 5vw, 56px);
+  margin-bottom: 56px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+}
+
+.value-word {
+  font-family: var(--serif);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+.value-compare {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.value-bad {
+  color: var(--ink-muted);
+  text-decoration: line-through;
+  text-decoration-color: rgba(212, 136, 30, 0.5);
+  font-size: 17px;
+}
+
+.value-good {
+  font-family: var(--serif);
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+.value-desc {
+  color: var(--ink-soft);
+  font-size: 16px;
+  max-width: 52ch;
+}
+
+.culture-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.culture-card {
+  background: var(--paper-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 36px;
+  position: relative;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.culture-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(0,0,0,0.06);
+  border-color: var(--accent);
+}
+
+.culture-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.culture-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--accent-light);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.culture-card-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.culture-card-index {
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-muted);
+}
+
+.culture-card h3 {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.culture-card p {
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .culture-grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   02 — How We Work (3D Interactive Cards)
+   ========================================================================== */
+.scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.scenario-perspective {
+  perspective: 1000px;
+}
+
+.scenario-card-3d {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.scenario-card-3d.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.scenario-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: var(--radius-md);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid var(--line-dark);
+}
+
+.scenario-front {
+  background: #1A1915;
+  color: var(--ink-on-dark);
+}
+
+.scenario-back {
+  background: linear-gradient(145deg, #24221C, #181713);
+  color: var(--paper);
+  transform: rotateY(180deg);
+  border-color: var(--accent);
+  box-shadow: 0 10px 30px rgba(212, 136, 30, 0.15);
+}
+
+.scenario-tag-num {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+
+.scenario-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+  width: fit-content;
+}
+
+.scenario-front .scenario-label {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--ink-on-dark-soft);
+}
+
+.scenario-back .scenario-label {
+  background: rgba(212, 136, 30, 0.2);
+  color: var(--accent);
+}
+
+.scenario-text {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.scenario-hint {
+  font-size: 12px;
+  color: var(--ink-on-dark-soft);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+@media (max-width: 900px) {
+  .scenario-grid { grid-template-columns: 1fr; }
+  .scenario-card-3d { height: 260px; }
+}
+
+/* ==========================================================================
+   03 — People Q&A
+   ========================================================================== */
+.people-qa-list {
+  display: grid;
+  gap: 20px;
+}
+
+.qa-card {
+  background: var(--paper-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 32px clamp(24px, 4vw, 40px);
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 24px;
+  align-items: center;
+  transition: all 0.25s ease;
+}
+
+.qa-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.04);
+}
+
+.qa-q {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink-muted);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.qa-q-icon {
+  width: 28px;
+  height: 28px;
+  background: var(--paper-dim);
+  color: var(--ink);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.qa-a {
+  font-family: var(--serif);
+  font-size: clamp(20px, 2.5vw, 26px);
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+@media (max-width: 680px) {
+  .qa-card { grid-template-columns: 1fr; gap: 12px; }
+}
+
+/* ==========================================================================
+   04 — Culture in Action
+   ========================================================================== */
+.cases-wrapper {
+  display: grid;
+  gap: 64px;
+}
+
+.case-box {
+  background: #181714;
+  border: 1px solid var(--line-dark);
+  border-radius: var(--radius-lg);
+  padding: clamp(32px, 5vw, 48px);
+}
+
+.case-title {
+  font-family: var(--serif);
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: 500;
+  margin-bottom: 32px;
+}
+
+.process-stepper {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  position: relative;
+}
+
+.process-step-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 20px 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.process-step-item:hover {
+  background: rgba(212, 136, 30, 0.1);
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.step-num {
+  font-family: var(--serif);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.step-name {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--paper);
+}
+
+@media (max-width: 768px) {
+  .process-stepper { grid-template-columns: repeat(2, 1fr); }
+}
+
+.failure-flow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.failure-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 24px;
+}
+
+.failure-card-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.failure-card-body {
+  font-size: 15px;
+  color: var(--ink-on-dark-soft);
+  line-height: 1.5;
+}
+
+.case-quote-note {
+  border-left: 3px solid var(--accent);
+  padding-left: 20px;
+  color: var(--ink-on-dark-soft);
+  font-size: 15px;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .failure-flow { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   05 — First Day Timeline
+   ========================================================================== */
+.timeline-container {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 56px;
+}
+
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 7px;
+  width: 2px;
+  background: var(--line);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 32px;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-node {
+  position: absolute;
+  left: -24px;
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 3px solid var(--accent);
+}
+
+.timeline-content {
+  background: var(--paper-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.timeline-time {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--accent);
+  min-width: 70px;
+}
+
+.timeline-label {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ink);
+  min-width: 100px;
+}
+
+.timeline-quote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--ink-soft);
+}
+
+.first-day-banner {
+  background: linear-gradient(135deg, var(--accent-light), #EFECE1);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  text-align: center;
+}
+
+.first-day-banner p {
+  font-family: var(--serif);
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+@media (max-width: 640px) {
+  .timeline-content { flex-direction: column; align-items: flex-start; gap: 6px; }
+}
+
+/* ==========================================================================
+   06 — Recruit Section
+   ========================================================================== */
+.recruit-box {
+  background: radial-gradient(circle at top right, #2C2922 0%, #121210 100%);
+  border: 1px solid var(--line-dark);
+  border-radius: var(--radius-lg);
+  padding: clamp(48px, 8vw, 80px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recruit-title {
+  font-family: var(--serif);
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.recruit-copy {
+  font-size: clamp(18px, 2.2vw, 22px);
+  color: var(--ink-on-dark-soft);
+  max-width: 32ch;
+  margin-bottom: 40px;
+  font-weight: 300;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer {
+  background: #0C0C0A;
+  color: var(--ink-muted);
+  padding: 40px var(--gutter);
+  border-top: 1px solid var(--line-dark);
+}
+
+.footer-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+@media (max-width: 640px) {
+  .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header" id="siteHeader">
+  <a href="#hero" class="logo">
+    <span class="logo-dot"></span> PLURAL
+  </a>
+  <nav class="site-nav">
+    <a href="#culture">Culture</a>
+    <a href="#how-we-work">How We Work</a>
+    <a href="#people">People</a>
+    <a href="#culture-in-action">Action</a>
+    <a href="#recruit">Positions</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section id="hero" class="hero">
+    <div class="hero-bg-glow"></div>
+    <div class="hero-inner reveal">
+      <span class="hero-kicker">WORKING WITH US</span>
+      <h1 class="hero-headline">
+        WE DON'T JUST WORK.<br>
+        <span class="hero-headline-accent">WE WORK OUR WAY.</span>
+      </h1>
+      <p class="hero-sub">같은 목표를 바라보지만,<br>일하는 방식까지 같을 필요는 없으니까.</p>
+      <div class="hero-actions">
+        <a href="#culture" class="btn btn-primary">EXPLORE OUR CULTURE →</a>
+        <a href="#recruit" class="btn btn-ghost">JOIN US →</a>
+      </div>
+    </div>
+    <div class="hero-scroll-cue">
+      <span class="hero-scroll-line"></span> SCROLL TO EXPLORE
+    </div>
+  </section>
+
+  <!-- 01 : OUR CULTURE -->
+  <section id="culture" class="section section-light">
+    <span class="section-index" aria-hidden="true">01</span>
+    <div class="section-inner">
+      <div class="section-tag">Philosophy</div>
+      <h2 class="section-title reveal">OUR CULTURE</h2>
+
+      <div class="value-statement reveal">
+        <div class="value-word">TRUST & AUTONOMY</div>
+        <div class="value-compare">
+          <p class="value-bad">우리는 구성원을 신뢰합니다.</p>
+          <p class="value-good">일을 맡겼다면, 방법까지 맡깁니다.</p>
+        </div>
+        <p class="value-desc">우리는 모든 과정을 통제하기보다 각자가 가장 잘할 수 있는 방법을 스스로 선택할 수 있도록 존중합니다.</p>
+      </div>
+
+      <div class="culture-grid">
+        <div class="culture-card reveal">
+          <div class="culture-card-top">
+            <div class="culture-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            </div>
+            <span class="culture-card-index">01</span>
+          </div>
+          <h3>SPEAK UP</h3>
+          <p>좋은 아이디어에는 직급이 필요하지 않습니다. 솔직하고 건설적인 피드백을 환영합니다.</p>
+        </div>
+
+        <div class="culture-card reveal">
+          <div class="culture-card-top">
+            <div class="culture-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
+            </div>
+            <span class="culture-card-index">02</span>
+          </div>
+          <h3>OWN IT</h3>
+          <p>맡은 일을 끝까지 책임지고 이끄는 것. 그것이 우리가 정의하는 최고의 주도성입니다.</p>
+        </div>
+
+        <div class="culture-card reveal">
+          <div class="culture-card-top">
+            <div class="culture-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+            </div>
+            <span class="culture-card-index">03</span>
+          </div>
+          <h3>TRY & LEARN</h3>
+          <p>실패하지 않는 것에 안주하기보다, 빠르게 시도하고 더 빠르게 배우는 것을 가치 있게 여깁니다.</p>
+        </div>
+
+        <div class="culture-card reveal">
+          <div class="culture-card-top">
+            <div class="culture-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+            <span class="culture-card-index">04</span>
+          </div>
+          <h3>ONE TEAM</h3>
+          <p>혼자 탁월한 성과를 내는 사람보다, 팀과 함께 더 큰 문제를 해결하는 협업가를 신뢰합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 : HOW WE WORK (3D Cards) -->
+  <section id="how-we-work" class="section section-dark">
+    <span class="section-index" aria-hidden="true">02</span>
+    <div class="section-inner">
+      <div class="section-tag">Mindset</div>
+      <h2 class="section-title reveal">HOW WE WORK</h2>
+      <p class="section-lead reveal">카드를 클릭하여 일상적인 작업 상황 속에서 PLURAL이 실제로 다르게 반응하는 관점을 확인해 보세요.</p>
+
+      <div class="scenario-grid reveal">
+        <!-- Scenario 01 -->
+        <div class="scenario-perspective">
+          <div class="scenario-card-3d" onclick="toggleCard(this)" role="button" tabindex="0">
+            <div class="scenario-face scenario-front">
+              <div>
+                <span class="scenario-tag-num">SITUATION 01</span>
+                <p style="margin-top: 12px;" class="scenario-text">회의에서 다른 의견이 생겼을 때</p>
+              </div>
+              <div>
+                <span class="scenario-label">BEFORE</span>
+                <p style="margin-top: 8px; font-size: 15px; color: var(--ink-on-dark-soft);">"일단 결정된 방향으로 진행하죠."</p>
+              </div>
+              <div class="scenario-hint">🔄 카드를 뒤집어보기</div>
+            </div>
+            <div class="scenario-face scenario-back">
+              <div>
+                <span class="scenario-tag-num">SITUATION 01</span>
+                <p style="margin-top: 12px;" class="scenario-text">PLURAL의 대화 방식</p>
+              </div>
+              <div>
+                <span class="scenario-label">PLURAL WAY</span>
+                <p style="margin-top: 8px; font-size: 16px; font-weight: 600;">"잠깐만요. 다른 관점에서도 한번 볼까요?"</p>
+              </div>
+              <div class="scenario-hint" style="color: var(--accent);">✨ 다각도 관점 경청</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scenario 02 -->
+        <div class="scenario-perspective">
+          <div class="scenario-card-3d" onclick="toggleCard(this)" role="button" tabindex="0">
+            <div class="scenario-face scenario-front">
+              <div>
+                <span class="scenario-tag-num">SITUATION 02</span>
+                <p style="margin-top: 12px;" class="scenario-text">프로젝트 일정이 지연되었을 때</p>
+              </div>
+              <div>
+                <span class="scenario-label">BEFORE</span>
+                <p style="margin-top: 8px; font-size: 15px; color: var(--ink-on-dark-soft);">"왜 늦어졌어요?"</p>
+              </div>
+              <div class="scenario-hint">🔄 카드를 뒤집어보기</div>
+            </div>
+            <div class="scenario-face scenario-back">
+              <div>
+                <span class="scenario-tag-num">SITUATION 02</span>
+                <p style="margin-top: 12px;" class="scenario-text">PLURAL의 대화 방식</p>
+              </div>
+              <div>
+                <span class="scenario-label">PLURAL WAY</span>
+                <p style="margin-top: 8px; font-size: 16px; font-weight: 600;">"어디에서 병목이 생겼는지 함께 찾아볼까요?"</p>
+              </div>
+              <div class="scenario-hint" style="color: var(--accent);">✨ 원인 규명과 문제 해결 Focus</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scenario 03 -->
+        <div class="scenario-perspective">
+          <div class="scenario-card-3d" onclick="toggleCard(this)" role="button" tabindex="0">
+            <div class="scenario-face scenario-front">
+              <div>
+                <span class="scenario-tag-num">SITUATION 03</span>
+                <p style="margin-top: 12px;" class="scenario-text">신입사원이 새로운 파격을 제안할 때</p>
+              </div>
+              <div>
+                <span class="scenario-label">BEFORE</span>
+                <p style="margin-top: 8px; font-size: 15px; color: var(--ink-on-dark-soft);">"아직 맥락 파악이 부족해서 그럴 수 있어요."</p>
+              </div>
+              <div class="scenario-hint">🔄 카드를 뒤집어보기</div>
+            </div>
+            <div class="scenario-face scenario-back">
+              <div>
+                <span class="scenario-tag-num">SITUATION 03</span>
+                <p style="margin-top: 12px;" class="scenario-text">PLURAL의 대화 방식</p>
+              </div>
+              <div>
+                <span class="scenario-label">PLURAL WAY</span>
+                <p style="margin-top: 8px; font-size: 16px; font-weight: 600;">"새로운 시각이네요! 그렇게 생각한 배경이 궁금해요."</p>
+              </div>
+              <div class="scenario-hint" style="color: var(--accent);">✨ 편견 없는 호기심과 수용</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 : PEOPLE -->
+  <section id="people" class="section section-light">
+    <span class="section-index" aria-hidden="true">03</span>
+    <div class="section-inner">
+      <div class="section-tag">Voices</div>
+      <h2 class="section-title reveal">PEOPLE WHO MAKE THE CULTURE</h2>
+
+      <div class="people-qa-list reveal">
+        <div class="qa-card">
+          <div class="qa-q">
+            <span class="qa-q-icon">Q</span>
+            우리 회사에서 가장 자주 듣게 되는 말은?
+          </div>
+          <div class="qa-a">"일단 가볍게 만들어서 테스트해 보죠."</div>
+        </div>
+
+        <div class="qa-card">
+          <div class="qa-q">
+            <span class="qa-q-icon">Q</span>
+            합류 후 일하며 가장 크게 달라진 경험은?
+          </div>
+          <div class="qa-a">"혼자 끙끙 매며 고심하는 시간이 완전히 사라졌어요."</div>
+        </div>
+
+        <div class="qa-card">
+          <div class="qa-q">
+            <span class="qa-q-icon">Q</span>
+            일하면서 가장 전율을 느끼는 순간은?
+          </div>
+          <div class="qa-a">"내가 지나가듯 던진 아이디어가 한 달 뒤 진짜 서비스가 될 때."</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 : CULTURE IN ACTION -->
+  <section id="culture-in-action" class="section section-dark">
+    <span class="section-index" aria-hidden="true">04</span>
+    <div class="section-inner">
+      <div class="section-tag">Proof</div>
+      <h2 class="section-title reveal">CULTURE IN ACTION</h2>
+
+      <div class="cases-wrapper reveal">
+        <div class="case-box">
+          <h3 class="case-title">01. 하나의 아이디어가 실제 제품이 되기까지</h3>
+          <div class="process-stepper">
+            <div class="process-step-item">
+              <span class="step-num">STEP 01</span>
+              <span class="step-name">IDEA</span>
+            </div>
+            <div class="process-step-item">
+              <span class="step-num">STEP 02</span>
+              <span class="step-name">DISCUSSION</span>
+            </div>
+            <div class="process-step-item">
+              <span class="step-num">STEP 03</span>
+              <span class="step-name">PROTOTYPE</span>
+            </div>
+            <div class="process-step-item">
+              <span class="step-num">STEP 04</span>
+              <span class="step-name">TEST</span>
+            </div>
+            <div class="process-step-item">
+              <span class="step-num">STEP 05</span>
+              <span class="step-name">LAUNCH</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-box">
+          <h3 class="case-title">02. 우리는 실패한 프로젝트도 당당히 기록합니다</h3>
+          <div class="failure-flow">
+            <div class="failure-card">
+              <span class="failure-card-tag">가설 수립</span>
+              <div class="failure-card-body">"사용자에게 이 신규 인터랙션 기능이 필수적일 것이다."</div>
+            </div>
+            <div class="failure-card">
+              <span class="failure-card-tag">실제 결과</span>
+              <div class="failure-card-body">유저 테스트 결과 10명 중 7명이 해당 기능을 인지하지 못함.</div>
+            </div>
+            <div class="failure-card">
+              <span class="failure-card-tag">배움과 행동</span>
+              <div class="failure-card-body">복잡성을 과감히 버리고 핵심 가치 중심으로 제로베이스 재설계.</div>
+            </div>
+          </div>
+          <div class="case-quote-note">
+            "완벽해서 실패하지 않는 팀보다는, 실패로부터 가장 빨리 배우고 회복하는 팀이 더 위대한 제품을 만듭니다."
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 : YOUR FIRST DAY -->
+  <section id="first-day" class="section section-light">
+    <span class="section-index" aria-hidden="true">05</span>
+    <div class="section-inner">
+      <div class="section-tag">Onboarding</div>
+      <h2 class="section-title reveal">YOUR FIRST DAY</h2>
+
+      <div class="timeline-container reveal">
+        <div class="timeline-item">
+          <div class="timeline-node"></div>
+          <div class="timeline-content">
+            <span class="timeline-time">09:00</span>
+            <span class="timeline-label">첫 출근 & 웰컴</span>
+            <span class="timeline-quote">"환영합니다! 준비된 전용 킷을 확인해 보세요."</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-node"></div>
+          <div class="timeline-content">
+            <span class="timeline-time">10:30</span>
+            <span class="timeline-label">팀 체크인</span>
+            <span class="timeline-quote">"궁금한 건 언제든 편하게 슬랙으로 사소하게 물어보세요."</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-node"></div>
+          <div class="timeline-content">
+            <span class="timeline-time">13:00</span>
+            <span class="timeline-label">버디와 점심</span>
+            <span class="timeline-quote">"맛있는 점심과 함께 팀의 소소한 가이드라인을 공유해요."</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-node"></div>
+          <div class="timeline-content">
+            <span class="timeline-time">15:00</span>
+            <span class="timeline-label">온보딩 과제</span>
+            <span class="timeline-quote">"가볍게 만들어보며 시스템과 친해지는 시간입니다."</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-node"></div>
+          <div class="timeline-content">
+            <span class="timeline-time">18:00</span>
+            <span class="timeline-label">정시 퇴근</span>
+            <span class="timeline-quote">"첫날 고생 많으셨어요! 충전하고 내일 봐요."</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="first-day-banner reveal">
+        <p>그리고 내일,<br>당신의 첫 번째 멋진 아이디어가 시작됩니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECRUIT -->
+  <section id="recruit" class="section section-dark">
+    <div class="section-inner">
+      <div class="recruit-box reveal">
+        <div class="section-tag">Join Plural</div>
+        <h2 class="recruit-title">YOUR NEXT MOVE.</h2>
+        <p class="recruit-copy">당신이 잘하는 가치와 PLURAL의 도전이 만나면 어떤 놀라운 일들이 시작될까요?</p>
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary">OPEN POSITIONS →</a>
+          <a href="#" class="btn btn-ghost">MEET OUR TEAMS →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p>PLURAL — WORKING WITH US © All rights reserved.</p>
+    <p style="color: var(--ink-on-dark-soft);">Crafted for Extraordinary Teams</p>
+  </div>
+</footer>
+
+<script>
+// 1. Sticky Header Background Transition on Scroll
+const siteHeader = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    siteHeader.classList.add('is-scrolled');
+  } else {
+    siteHeader.classList.remove('is-scrolled');
+  }
+});
+
+// 2. 3D Card Flip Handler
+function toggleCard(cardElement) {
+  cardElement.classList.toggle('is-flipped');
+}
+
+// Keydown event accessibility support for cards
+document.querySelectorAll('.scenario-card-3d').forEach(card => {
+  card.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleCard(card);
+    }
+  });
+});
+
+// 3. Scroll Reveal Animations (Intersection Observer)
+const observerOptions = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0.15
+};
+
+const revealObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// 4. Active Navigation Link Syncing
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.site-nav a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 120;
+    if (pageYOffset >= sectionTop) {
+      current = section.getAttribute('id');
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === `#${current}`) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+</body>
+</html>
