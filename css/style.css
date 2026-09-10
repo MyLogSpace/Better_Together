@@ -409,46 +409,6 @@ a { color: inherit; }
 }
 
 /* ==========================================================================
-   Moments gallery
-   ========================================================================== */
-.moments-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 24px;
-  margin-bottom: 32px;
-  flex-wrap: wrap;
-}
-
-.link-more {
-  text-decoration: none;
-  font-weight: 700;
-  color: var(--primary);
-  font-size: 14.5px;
-  white-space: nowrap;
-}
-
-.moments-grid {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 1.1fr 1fr 1fr;
-  grid-template-rows: auto auto;
-  gap: 14px;
-}
-
-.moments-grid li { border-radius: var(--radius-md); overflow: hidden; }
-.moments-grid li img { width: 100%; height: 100%; object-fit: cover; }
-.moments-grid li.tall { grid-row: span 2; }
-.moments-grid li.wide { grid-column: span 2; }
-
-@media (max-width: 760px) {
-  .moments-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-  .moments-grid li.tall, .moments-grid li.wide { grid-column: span 1; grid-row: span 1; }
-}
-
-/* ==========================================================================
    FAQ
    ========================================================================== */
 .faq-handwrite { margin-top: 32px; }
